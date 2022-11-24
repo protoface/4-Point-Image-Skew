@@ -5,11 +5,12 @@ namespace ImageStretchingPoC
 {
 	public partial class Form1 : Form
 	{
-		public Form1()
+		public Form1(string[] args)
 		{
 			filler = new();
 			//filler.PaintEvent += pictureBox1_Paint;
-			bitmap = (Bitmap)Image.FromFile("""C:\Users\felix\Downloads\-Wallpapers-Full-HD-random-35881387-1920-1080.png""");
+
+			bitmap = (Bitmap)Image.FromFile(args.Last());
 			InitializeComponent();
 			filler.Show();
 		}
