@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net7.0-windows</TargetFramework>
+		<LangVersion>10</LangVersion>
+		<Nullable>enable</Nullable>
+		<UseWindowsForms>true</UseWindowsForms>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<TieredCompilation>true</TieredCompilation>
+		<DebugType>none</DebugType>
+		<DebugSymbols>false</DebugSymbols>
+		<Optimize>true</Optimize>
+		<LangVersion>preview</LangVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\.editorconfig" Link=".editorconfig" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Stretcher\Stretcher.csproj" />
+	</ItemGroup>
+
+</Project>

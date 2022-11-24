@@ -1,0 +1,5 @@
+﻿C:\Users\felix\source\repos\ImageStretchingPoC\ImageStretchingPoC\Form1.cs
+C:\Users\felix\source\repos\ImageStretchingPoC\ImageStretchingPoC\Form1.Designer.cs
+C:\Users\felix\source\repos\ImageStretchingPoC\ImageStretchingPoC\Program.cs
+C:\Users\felix\source\repos\ImageStretchingPoC\ImageStretchingPoC\image.png
+C:\Users\felix\source\repos\ImageStretchingPoC\ImageStretchingPoC\Form1.resx
