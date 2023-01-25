@@ -1,11 +1,11 @@
-﻿using System.Drawing;
+﻿using System.Diagnostics;
+using System.Drawing;
 using System.Drawing.Imaging;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Text;
 
 public static class Stretcher
 {
-	[MethodImpl(MethodImplOptions.AggressiveOptimization | MethodImplOptions.AggressiveInlining)]
 	public unsafe static Bitmap StretchBitmap(Bitmap original, int stretchedWidth, int stretchedHeight, Point topLeft, Point topRight, Point bottomLeft, Point bottomRight)
 	{
 		Bitmap stretched = new(stretchedWidth, stretchedHeight, PixelFormat.Format8bppIndexed);
@@ -18,11 +18,13 @@ public static class Stretcher
 
 		var mapOrig = original.LockBits(new(0, 0, imgWidth, imgHeight), ImageLockMode.ReadOnly, PixelFormat.Format1bppIndexed);
 
-		var mapStretched = stretched.LockBits(new(0, 0, stretchedWidth, stretchedHeight), ImageLockMode.ReadOnly, stretched.PixelFormat);
-		byte* stretchedPtr = (byte*)mapStretched.Scan0.ToPointer();
-
+		var mapStretched = stretched.LockBits(new(0, 0, stretchedWidth, stretchedHeight), ImageLockMode.ReadWrite, stretched.PixelFormat);
+		byte* stretchedPtr = (byte*)mapStretched.Scan0;
 		for (int y = 1; y < stretchedHeight; y++)
 		{
+#if DEBUG
+			StringBuilder output = new();
+#endif
 			int xOffsetLeft = (int)((xOffsetLeftPre * y) + topLeft.X);
 			int xOffsetRight = (int)((xOffsetRightPre * y) + topRight.X);
 			float xLineLength = stretchedWidth - xOffsetLeft - xOffsetRight;
@@ -46,12 +48,19 @@ public static class Stretcher
 
 				int h = y * stretchedWidth, p = y * imgWidth;
 				stretchedPtr[((y + yOffsetTop) * mapStretched.Stride) + x + xOffsetLeft]
-					= GetIndexedPixel((int)(x * xFactor), (int)(y * yFactor), mapOrig) != 0
+					= GetIndexedPixel((int)(x * xFactor), (int)(y * yFactor), mapOrig) > 0
 					? byte.MaxValue
 					: (byte)0x0;
-
+#if DEBUG
+				output.Append(GetIndexedPixel((int)(x * xFactor), (int)(y * yFactor), mapOrig).ToString() + " ");
+#endif
 			}
+
+#if DEBUG
+			Debug.WriteLine(output.ToString());
+#endif
 		}
+
 
 		original.UnlockBits(mapOrig);
 		stretched.UnlockBits(mapStretched);
