@@ -1,29 +1,26 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<OutputType>WinExe</OutputType>
-		<TargetFramework>net7.0-windows</TargetFramework>
-		<LangVersion>10</LangVersion>
-		<Nullable>enable</Nullable>
-		<UseWindowsForms>true</UseWindowsForms>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<TieredCompilation>true</TieredCompilation>
-		<DebugType>none</DebugType>
-		<DebugSymbols>false</DebugSymbols>
-		<Optimize>true</Optimize>
-		<LangVersion>preview</LangVersion>
-	</PropertyGroup>
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <LangVersion>preview</LangVersion>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <TieredCompilation>true</TieredCompilation>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
 
-	<ItemGroup>
-		<None Include="..\.editorconfig" Link=".editorconfig" />
-	</ItemGroup>
+  <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
 
-	<ItemGroup>
-	  <PackageReference Include="System.IO.Ports" Version="7.0.0" />
-	</ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.IO.Ports" Version="7.0.0" />
+  </ItemGroup>
 
-	<ItemGroup>
-		<ProjectReference Include="..\Stretcher\Stretcher.csproj" />
-	</ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Stretcher\Stretcher.csproj" />
+  </ItemGroup>
 
 </Project>
